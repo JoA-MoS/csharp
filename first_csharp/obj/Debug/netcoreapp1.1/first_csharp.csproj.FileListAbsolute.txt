@@ -1,0 +1,8 @@
+c:\dev\CodingDojo\c#\first_csharp\bin\Debug\netcoreapp1.1\first_csharp.deps.json
+c:\dev\CodingDojo\c#\first_csharp\bin\Debug\netcoreapp1.1\first_csharp.runtimeconfig.json
+c:\dev\CodingDojo\c#\first_csharp\bin\Debug\netcoreapp1.1\first_csharp.runtimeconfig.dev.json
+c:\dev\CodingDojo\c#\first_csharp\bin\Debug\netcoreapp1.1\first_csharp.dll
+c:\dev\CodingDojo\c#\first_csharp\bin\Debug\netcoreapp1.1\first_csharp.pdb
+c:\dev\CodingDojo\c#\first_csharp\obj\Debug\netcoreapp1.1\first_csharp.AssemblyInfo.cs
+c:\dev\CodingDojo\c#\first_csharp\obj\Debug\netcoreapp1.1\first_csharp.dll
+c:\dev\CodingDojo\c#\first_csharp\obj\Debug\netcoreapp1.1\first_csharp.pdb
