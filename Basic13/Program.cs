@@ -27,7 +27,7 @@ namespace basic13
             }
 
             Console.WriteLine("======================Iterate Through Array========================");
-            int[] x = new int[] { 1, 3, 5, 7, 9, 13 };
+            int[] x = { 1, 3, 5, 7, 9, 13 };
             foreach (int item in x)
             {
                 Console.WriteLine(item);
@@ -35,7 +35,7 @@ namespace basic13
 
             Console.WriteLine("======================Get Max Val========================");
             Console.WriteLine(GetMax(x));
-            int[] y = new int[] { -3, -5, -7 };
+            int[] y = { -3, -5, -7 };
             Console.WriteLine(GetMax(y));
 
             Console.WriteLine("======================Get Average Val========================");
@@ -51,24 +51,14 @@ namespace basic13
                 odds.Add(i);
             }
             Console.WriteLine(string.Join(", ", odds));
+            
             Console.WriteLine("======================Count Greater Than========================");
             int[] gt = new int[] { 1, 3, 5, 7 };
             int val = 2;
-            int count = 0;
-            for (int i = 0; i < gt.Length; i++)
-            {
-                if (gt[i] > val)
-                {
-                    count++;
-                }
-            }
-            Console.WriteLine(count);
-            Console.WriteLine("======================Square the array========================");
-            for (int i = 0; i < x.Length; i++)
-            {
-                x[i] = x[i] * x[i];
-            }
+            Console.WriteLine(gt.Where(g => g > val).Count());
 
+            Console.WriteLine("======================Square the array========================");
+            x = x.Select(i => i * i).ToArray();
             Console.WriteLine(string.Join(", ", x));
 
 
@@ -79,15 +69,7 @@ namespace basic13
 
             Console.WriteLine("======================Negative to Dojo in the array========================");
             object[] noNeg2 = { 1, -3, 4, -9, 2, 4 };
-            for (int i = 0; i < noNeg2.Length; i++)
-            {
-                if ((int)noNeg2[i] < 0)
-                {
-                    noNeg2[i] = "dojo";
-                }
-            }
-
-            noNeg2.Select(p => (int)p <= 0);
+            noNeg2 = noNeg2.Select(i => (int)i < 0 ? "dojo" : i).ToArray();        
             Console.WriteLine(string.Join(", ", noNeg2));
         }
 
