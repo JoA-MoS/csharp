@@ -51,7 +51,7 @@ namespace basic13
                 odds.Add(i);
             }
             Console.WriteLine(string.Join(", ", odds));
-            
+
             Console.WriteLine("======================Count Greater Than========================");
             int[] gt = new int[] { 1, 3, 5, 7 };
             int val = 2;
