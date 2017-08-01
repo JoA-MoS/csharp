@@ -6,12 +6,19 @@ namespace Human
     {
         static void Main(string[] args)
         {
-            Human justin = new Human("Justin");
-            Human christian = new Human("Christian");
+            Human h = new Human("Justin");
+            Wizard w = new Wizard("wizard");
+            Ninja n = new Ninja("ninja");
+            Samurai s = new Samurai("sam");
 
-            justin.Attack(christian);
-            Console.WriteLine(christian);
-            justin.Attack(5);
+            
+            Console.WriteLine(h);
+            Console.WriteLine(w);
+            Console.WriteLine(n);
+            Console.WriteLine(s);
+
+            Console.WriteLine(Samurai.Count);
+            
         }
     }
 }
