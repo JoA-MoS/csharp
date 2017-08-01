@@ -10,10 +10,8 @@ namespace Human
             Human christian = new Human("Christian");
 
             justin.Attack(christian);
-
-            Console.WriteLine(christian.health);
-
-
+            Console.WriteLine(christian);
+            justin.Attack(5);
         }
     }
 }
