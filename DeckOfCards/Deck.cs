@@ -4,7 +4,10 @@ namespace DeckOfCards
 {
     public class Deck:AbstractCardSet
     {
-        public static string[] suits = { "Clubs", "Spades", "Hearts", "Diamonds" };
+        public static Suit[] suits = { new Suit("Clubs", ConsoleColor.White, ConsoleColor.Black),
+                                       new Suit("Spades", ConsoleColor.White, ConsoleColor.Red), 
+                                       new Suit("Hearts", ConsoleColor.White, ConsoleColor.Black),
+                                       new Suit("Diamonds", ConsoleColor.White, ConsoleColor.Red) };
         public static string[] ranks = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
 
 

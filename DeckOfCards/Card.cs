@@ -17,7 +17,7 @@ namespace DeckOfCards
 
         public override string ToString()
         {
-            return $"{Deck.ranks[rank]} of {Deck.suits[suit]}";
+            return $"{Deck.ranks[rank]} of {Deck.suits[suit].name}";
         }
     }
 }
