@@ -8,7 +8,7 @@ namespace DeckOfCards
 
         public Rank(){}
 
-        public Rank(string name, int value, int score){
+        public Rank(string name, int value, int score=0){
             this.name = name;
             this.value = value;
             this.score = score;

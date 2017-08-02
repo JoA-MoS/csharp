@@ -81,19 +81,22 @@ namespace DeckOfCards
         public override string ToString()
         {
             string strCards = "";
+            int count = 1;
             foreach (Card card in cards)
             {
-                strCards += card.ToString() + "\r\n";
+                strCards += count + ": " + card.ToString() + "\r\n";
+                count ++;
             }
             return strCards;
         }
 
-        public  void Show()
+        public void Show()
         {
-            
+            int count = 1;
             foreach (Card card in cards)
             {
-                card.Show();
+                card.Show(count);
+                count ++;
             }
         }
 

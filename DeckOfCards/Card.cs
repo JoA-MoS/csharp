@@ -7,10 +7,10 @@ namespace DeckOfCards
     {
 
         public string strValue;
-        public int suit;
-        public int rank;
+        public Suit suit;
+        public Rank rank;
 
-        public Card(int suit, int rank)
+        public Card(Suit suit, Rank rank)
         {
             this.suit = suit;
             this.rank = rank;
@@ -19,13 +19,13 @@ namespace DeckOfCards
 
         public override string ToString()
         {
-            return $"{Deck.ranks[rank]} of {Deck.suits[suit].name}";
+            return $"{suit.name} {rank.name}";
         }
 
-        public void Show(){
-            Console.BackgroundColor = Deck.suits[suit].backgroundColor;
-            Console.ForegroundColor = Deck.suits[suit].textColor;
-            Console.WriteLine(this);
+        public void Show(int count){
+            Console.BackgroundColor = suit.backgroundColor;
+            Console.ForegroundColor = suit.textColor;
+            Console.WriteLine(count +": " + this);
             Console.ResetColor();
         }
     }

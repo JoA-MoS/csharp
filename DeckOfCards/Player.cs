@@ -13,9 +13,12 @@ namespace DeckOfCards
 
         public override string ToString()
         {
-            string strCards = "";
-
             return $"=================={name}=================\r\n"+base.ToString();
+        }
+
+        public void ShowHand(){
+            System.Console.WriteLine($"=================={name}=================\r\n");
+            base.Show();
         }
     }
 }
