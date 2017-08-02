@@ -16,7 +16,7 @@ namespace DeckOfCards
             return $"=================={name}=================\r\n"+base.ToString();
         }
 
-        public void ShowHand(){
+        public void Show(){
             System.Console.WriteLine($"=================={name}=================\r\n");
             base.Show();
         }

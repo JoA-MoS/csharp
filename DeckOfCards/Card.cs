@@ -22,6 +22,13 @@ namespace DeckOfCards
             return $"{suit.name} {rank.name}";
         }
 
+        public void Show(){
+            Console.BackgroundColor = suit.backgroundColor;
+            Console.ForegroundColor = suit.textColor;
+            Console.WriteLine(this);
+            Console.ResetColor();
+        }
+
         public void Show(int count){
             Console.BackgroundColor = suit.backgroundColor;
             Console.ForegroundColor = suit.textColor;

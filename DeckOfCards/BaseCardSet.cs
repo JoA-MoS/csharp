@@ -8,13 +8,14 @@ namespace DeckOfCards
     {
         public List<Card> cards = new List<Card>();
 
-        public BaseCardSet(){}
+        public BaseCardSet() { }
 
-        public BaseCardSet(BaseCardSet source){
+        public BaseCardSet(BaseCardSet source)
+        {
             this.cards = source.cards;
         }
 
-        
+
 
         public BaseCardSet shuffle()
         {
@@ -39,17 +40,25 @@ namespace DeckOfCards
             return card;
         }
 
-        public List<Card> deal(int number=1)
+        public List<Card> deal(int number = 1)
         {
-            List<Card> deltCards = cards.GetRange(0,number);
-            cards.RemoveRange(0,number);
+            List<Card> deltCards = cards.GetRange(0, number);
+            cards.RemoveRange(0, number);
             return deltCards;
         }
 
-        public List<Card> draw(BaseCardSet source, int number=1)
+        public BaseCardSet GiveCard(int idx, BaseCardSet dest)
         {
-            List<Card> deltCards = source.cards.GetRange(0,number);
-            source.cards.RemoveRange(0,number);
+            Card card = cards[idx];
+            cards.RemoveAt(idx);
+            dest.cards.Add(card);
+            return this;
+        }
+
+        public List<Card> draw(BaseCardSet source, int number = 1)
+        {
+            List<Card> deltCards = source.cards.GetRange(0, number);
+            source.cards.RemoveRange(0, number);
             cards.AddRange(deltCards);
             return deltCards;
         }
@@ -85,7 +94,7 @@ namespace DeckOfCards
             foreach (Card card in cards)
             {
                 strCards += count + ": " + card.ToString() + "\r\n";
-                count ++;
+                count++;
             }
             return strCards;
         }
@@ -96,9 +105,27 @@ namespace DeckOfCards
             foreach (Card card in cards)
             {
                 card.Show(count);
-                count ++;
+                count++;
             }
         }
 
+        public BaseCardSet Order()
+        {
+            this.cards = this.cards.OrderBy(x => x.suit.name).ThenBy(x => x.rank.value).ToList();
+            return this;
+        }
+
+        /// <summary>
+        /// Gets the Last card added to a CardSet
+        /// </summary>
+        /// <returns>The last card in a CardSet</returns>
+
+        public Card TopCard
+        {
+            get
+            {
+                return this.cards.Last();
+            }
+        }
     }
 }

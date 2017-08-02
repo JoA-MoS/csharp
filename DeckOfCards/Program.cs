@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DeckOfCards
 {
@@ -6,30 +7,24 @@ namespace DeckOfCards
     {
         static void Main(string[] args)
         {
-            Deck standardDeck = new Deck();
-            Player p1 = new Player("player 1");
-            // Console.WriteLine(standardDeck);
-
-            Console.WriteLine(standardDeck.Count);
-            standardDeck.shuffle();
-
-            p1.draw(standardDeck);
-            p1.draw(standardDeck);
-            p1.draw(standardDeck);
-            p1.draw(standardDeck);
-            p1.draw(standardDeck);
-
+            System.Console.WriteLine("How Many Players?");
+            int players = int.Parse(Console.ReadLine());
+            List<string> playerNames = new List<string>();
+            for (int i = 0; i < players; i++)
+            {
+                System.Console.WriteLine($"Enter Player {i+1}'s name:");
+                playerNames.Add(Console.ReadLine());
+            }
             
 
-            // Console.WriteLine(p1);
-            // Console.WriteLine(p1.Count);
-            // Console.WriteLine(standardDeck.Count);
 
-            // Console.WriteLine(p1);
+            Game uno = new Game(playerNames.ToArray());
+    
+            uno.Turn(uno.players[0]);
+            uno.ShowTable();
+            
 
-            // standardDeck.Show();
 
-            p1.ShowHand();
 
         }
 

@@ -5,6 +5,7 @@ namespace DeckOfCards
         public string name;
         public int value;
         public int score;
+        public string action;
 
         public Rank(){}
 
