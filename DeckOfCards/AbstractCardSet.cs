@@ -4,11 +4,19 @@ using System.Linq;
 
 namespace DeckOfCards
 {
-    public abstract class AbstractCardSet
+    public class BaseCardSet
     {
         public List<Card> cards = new List<Card>();
 
-        public AbstractCardSet shuffle()
+        public BaseCardSet(){}
+
+        public BaseCardSet(BaseCardSet source){
+            this.cards = source.cards;
+        }
+
+        
+
+        public BaseCardSet shuffle()
         {
             Random rand = new Random();
             cards = cards.OrderBy(x => rand.Next()).ToList();
@@ -31,15 +39,23 @@ namespace DeckOfCards
             return card;
         }
 
-        // public List<Card> draw(AbstractCardSet source, int count=1)
-        // {
-        //     Card card = cards[0];
-        //     cards.RemoveAt(0);
-        //     return card;
-        // }
+        public List<Card> deal(int number=1)
+        {
+            List<Card> deltCards = cards.GetRange(0,number);
+            cards.RemoveRange(0,number);
+            return deltCards;
+        }
+
+        public List<Card> draw(BaseCardSet source, int number=1)
+        {
+            List<Card> deltCards = source.cards.GetRange(0,number);
+            source.cards.RemoveRange(0,number);
+            cards.AddRange(deltCards);
+            return deltCards;
+        }
 
 
-        public Card draw(AbstractCardSet source)
+        public Card draw(BaseCardSet source)
         {
             Card card = source.cards[0];
             source.cards.RemoveAt(0);
@@ -70,6 +86,15 @@ namespace DeckOfCards
                 strCards += card.ToString() + "\r\n";
             }
             return strCards;
+        }
+
+        public  void Show()
+        {
+            
+            foreach (Card card in cards)
+            {
+                card.Show();
+            }
         }
 
     }

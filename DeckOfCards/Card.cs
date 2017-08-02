@@ -1,3 +1,5 @@
+using System;
+
 namespace DeckOfCards
 {
 
@@ -18,6 +20,13 @@ namespace DeckOfCards
         public override string ToString()
         {
             return $"{Deck.ranks[rank]} of {Deck.suits[suit].name}";
+        }
+
+        public void Show(){
+            Console.BackgroundColor = Deck.suits[suit].backgroundColor;
+            Console.ForegroundColor = Deck.suits[suit].textColor;
+            Console.WriteLine(this);
+            Console.ResetColor();
         }
     }
 }

@@ -1,6 +1,6 @@
 namespace DeckOfCards
 {
-    public class Player : AbstractCardSet
+    public class Player : BaseCardSet
     {
         public string name;
         // hand = cards from Abstrace Base Class

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 namespace DeckOfCards
 {
-    public class Deck:AbstractCardSet
+    public class Deck:BaseCardSet
     {
         public static Suit[] suits = { new Suit("Clubs", ConsoleColor.White, ConsoleColor.Black),
                                        new Suit("Spades", ConsoleColor.White, ConsoleColor.Red), 
