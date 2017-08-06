@@ -51,9 +51,9 @@ namespace ConsoleApplication
             }
             //(Optional) Display the artist names of all members of the group 'Wu-Tang Clan'
              var wuTangArtists = ( from a in Artists
-                                            from g in Groups
-                                            where a.GroupId == g.Id && g.GroupName == "Wu-Tang Clan"
-                                            select a);
+                                    from g in Groups
+                                    where a.GroupId == g.Id && g.GroupName == "Wu-Tang Clan"
+                                    select a);
             System.Console.WriteLine("=======================================");
             foreach (Artist a in wuTangArtists)
             {
