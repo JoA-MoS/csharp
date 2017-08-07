@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-
 
 namespace DojoSurvey.Controllers
 {
+
     public class SurveyController : Controller
     {
         public IActionResult Index()
@@ -17,7 +18,7 @@ namespace DojoSurvey.Controllers
 
 
         [HttpPost]
-        public JsonResult Save(string name, int location, int language, string comments)
+        public IActionResult Save(string name, int location, int language, string comments)
         {
             var result = new
             {
@@ -26,17 +27,24 @@ namespace DojoSurvey.Controllers
                 language = language,
                 comments = comments
             };
+            // HttpContext.Session.SetString("result", JsonConvert.SerializeObject(result));
 
-            // HttpContext.Session.Set("result", JsonConvert.SerializeObject)
-            return Json(result);
+            TempData["name"] = result.name;
+            TempData["location"] = result.location;
+            TempData["language"] = result.language;
+            TempData["comments"] = result.comments;
+            return RedirectToAction("Result");
             // return View();
         }
 
-        public string Result()
+        public IActionResult Result()
         {
 
-            return "result";
-            // return View();
+            ViewBag.name = TempData["name"];
+            ViewBag.location = TempData["location"];
+            ViewBag.language = TempData["language"];
+            ViewBag.comments = TempData["comments"];
+            return View();
         }
 
         public IActionResult Error()
