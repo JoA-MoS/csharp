@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Dojo Survey";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="form-horizontal">
+
+        
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Name:</label>
+            <div class="col-sm-10">
+                <input type="text" name="name" id="name" class="form-control"  required="required"  title="">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="location" class="col-sm-2 control-label">Location:</label>
+            <div class="col-sm-10">
+                <select name="location" id="location" class="form-control" >
+                    <option value="0">San Jose</option>  
+                    <option value="1">Seattle</option>  
+                    <option value="2">Chicago</option>  
+                    <option value="3">New York</option>  
+                </select>
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="language" class="col-sm-2 control-label">Favorite Language:</label>
+            <div class="col-sm-10">
+                @ViewBag.language
+            </div>
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="comments" class="col-sm-2 control-label">comments:</label>
+            <div class="col-sm-10">
+                @ViewBag.comments
+            </div>
+        </div>
+        
+</div>
