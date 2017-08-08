@@ -7,13 +7,15 @@ using Dojodachi.Models;
 
 namespace Dojodachi.Controllers
 {
+    [Route("api/[controller]")]
     public class DojodachiController : Controller
     {
         Pet pet = new Pet();
-        public IActionResult Index()
+
+        public JsonResult Get()
         {
             ViewBag.pet = pet;
-            return View();
+            return Json(pet);
         }
 
 
