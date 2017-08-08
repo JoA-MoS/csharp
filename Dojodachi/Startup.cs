@@ -53,7 +53,7 @@ namespace Dojodachi
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Dojodachi}/{action=Index}/{id?}");
             });
         }
     }

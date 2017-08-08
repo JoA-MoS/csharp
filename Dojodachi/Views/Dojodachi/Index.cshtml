@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+<div class="row">
+    
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+         <h3>Fullness: @ViewBag.pet.Fullness</h3>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <h3>Happiness: @ViewBag.pet.Happiness</h3>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <h3>Meals: @ViewBag.pet.Meals</h3>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <h3>Energy: @ViewBag.pet.Energy</h3>
+    </div>
+</div>
+
+<div class="row text-center">
+    <img src="/images/dojodatchi.gif" alt="">
+</div>
+
+
+
+<div class="row text-center">
+   
+   <button type="button" class="btn btn-lg btn-default">Feed</button>
+   <button type="button" class="btn btn-lg btn-default">Play</button>
+   <button type="button" class="btn btn-lg btn-default">Work</button>
+   <button type="button" class="btn btn-lg btn-default">Restart</button>
+</div>
+}
