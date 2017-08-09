@@ -29,10 +29,10 @@ namespace Dojodachi.Controllers
             {
                 pet = new DojodachiPet(HttpContext.Session.GetObjectFromJson<DojodachiPet>("pet"));
             }
-            pet.Death += (sender, e) => CreateAlert(sender, e, "Dojodachi Died! :-(");
+            pet.Death += (sender, e) => RestartAlert(sender, e, "Dojodachi Died! :-(");
             pet.DidNotEat += (sender, e) => CreateAlert(sender, e, "Dojodachi did not eat :-(");
             pet.DidNotPlay += (sender, e) => CreateAlert(sender, e, "Dojodachi did not play :-(");
-            pet.Won += (sender, e) => CreateAlert(sender, e, "Dojodachi WON! :-D");
+            pet.Won += (sender, e) => RestartAlert(sender, e, "Dojodachi WON! :-D");
             return pet;
         }
 
@@ -90,17 +90,17 @@ namespace Dojodachi.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult ModalAction(int Id)
-        {
-            ViewBag.Id = Id;
-            return PartialView("ModalContent");
-        }
-
         private void CreateAlert(object sender, EventArgs e, string msg)
         {
             Console.WriteLine("Event Raised!");
-            TempData.Add("alert", msg);
-            ModalAction(1);
+            TempData["alert"] = msg;
+        }
+
+        private void RestartAlert(object sender, EventArgs e, string msg)
+        {
+            Console.WriteLine("Event Raised!");
+            TempData["alert"] = msg;
+            TempData["showRestart"] = true;
         }
     }
 }

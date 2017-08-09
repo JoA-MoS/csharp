@@ -89,10 +89,12 @@ namespace Dojodachi.Models
             {
                 if (Happiness <= 0 || Fullness <= 0)
                 {
+                    OnDeath(EventArgs.Empty);
                     return states.DEAD;
                 }
                 else if (Energy > 100 && Fullness > 100 && Happiness > 100)
                 {
+                    OnWin(EventArgs.Empty);
                     return states.WON;
                 }
                 else
@@ -157,7 +159,6 @@ namespace Dojodachi.Models
             {
                 Console.WriteLine("Dojodachi does not like how you are playing");
                 OnDidNotPlay(EventArgs.Empty);
-                // throw new Exception("Dojodachi does not like how you are playing");
             }
             return this;
         }
