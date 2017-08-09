@@ -3,7 +3,7 @@ using System;
 namespace Dojodachi.Models
 {
 
-    public class Pet
+    public class DojodachiPet
     {
         public enum states { DEAD, ALIVE, WON }
 
@@ -14,8 +14,48 @@ namespace Dojodachi.Models
         //It might be cool to seperate meals out to a player class so the meal moves with the player and they can
         //choose what Dojodachi to feed.
         int meals = 3;
+        public event EventHandler DidNotEat;
+        public event EventHandler DidNotPlay;
+        public event EventHandler Death;
+        public event EventHandler Won;
+        public DojodachiPet() { }
+        /// <summary>
+        /// Copy Constructor
+        /// </summary>
+        /// <param name="pet"></param>
+        /// <returns></returns>
+        public DojodachiPet(DojodachiPet pet) : this(pet.Happiness, pet.Fullness, pet.Energy, pet.Meals) { }
+        public DojodachiPet(int happiness, int fullness, int energy, int meals)
+        {
+            Happiness = happiness;
+            Fullness = fullness;
+            Energy = energy;
+            Meals = meals;
+        }
 
-        public Pet() { }
+        protected virtual void OnDidNotEat(EventArgs e)
+        {
+            if (DidNotEat != null)
+                DidNotEat(this, e);
+        }
+
+        protected virtual void OnDidNotPlay(EventArgs e)
+        {
+            if (DidNotPlay != null)
+                DidNotPlay(this, e);
+        }
+
+        protected virtual void OnWin(EventArgs e)
+        {
+            if (Won != null)
+                Won(this, e);
+        }
+
+        protected virtual void OnDeath(EventArgs e)
+        {
+            if (Death != null)
+                Death(this, e);
+        }
 
         public int Happiness
         {
@@ -25,7 +65,7 @@ namespace Dojodachi.Models
             }
             set
             {
-                happiness += value;
+                happiness = value;
                 CheckStatus();
             }
         }
@@ -38,7 +78,7 @@ namespace Dojodachi.Models
             }
             set
             {
-                fullness += value;
+                fullness = value;
                 CheckStatus();
             }
         }
@@ -71,7 +111,7 @@ namespace Dojodachi.Models
             }
             set
             {
-                meals += value;
+                meals = value;
             }
         }
 
@@ -83,12 +123,12 @@ namespace Dojodachi.Models
             }
             set
             {
-                energy += value;
+                energy = value;
             }
         }
 
 
-        public Pet Feed()
+        public DojodachiPet Feed()
         {
             Meals -= 1;
             Random rand = new Random();
@@ -98,27 +138,31 @@ namespace Dojodachi.Models
             }
             else
             {
-                throw new Exception("Dojodachi does not like the meal");
+                // Should we handle these events differently
+                Console.WriteLine("Dojodachi does not like the meal");
+                OnDidNotEat(EventArgs.Empty);
             }
             return this;
         }
 
-        public Pet Play()
+        public DojodachiPet Play()
         {
             Energy -= 5;
             Random rand = new Random();
             if (rand.Next(4) != 3)
             {
-                Energy += rand.Next(5, 11);
+                Happiness += rand.Next(5, 11);
             }
             else
             {
-                throw new Exception("Dojodachi does not like how you are playing");
+                Console.WriteLine("Dojodachi does not like how you are playing");
+                OnDidNotPlay(EventArgs.Empty);
+                // throw new Exception("Dojodachi does not like how you are playing");
             }
             return this;
         }
 
-        public Pet Work()
+        public DojodachiPet Work()
         {
             Energy -= 5;
             Random rand = new Random();
@@ -126,7 +170,7 @@ namespace Dojodachi.Models
             return this;
         }
 
-        public Pet Sleep()
+        public DojodachiPet Sleep()
         {
             Fullness -= 5;
             Happiness -= 5;
@@ -138,11 +182,13 @@ namespace Dojodachi.Models
         {
             if (State == states.DEAD)
             {
-                throw new Exception("Your Dojodachi has Died :-(");
+                Console.WriteLine("Dojodachi died");
+                OnDeath(EventArgs.Empty);
             }
             if (State == states.WON)
             {
-                throw new Exception("You WON!");
+                Console.WriteLine("Dojodachi WON!");
+                OnWin(EventArgs.Empty);
             }
         }
     }

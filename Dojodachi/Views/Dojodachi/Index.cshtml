@@ -1,8 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var alert = TempData["alert"];
 }
 
 @{
+
 <div class="row">
     
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -25,11 +27,26 @@
 
 
 
+
+
 <div class="row text-center">
    
-   <button type="button" class="btn btn-lg btn-default">Feed</button>
-   <button type="button" class="btn btn-lg btn-default">Play</button>
-   <button type="button" class="btn btn-lg btn-default">Work</button>
-   <button type="button" class="btn btn-lg btn-default">Restart</button>
+   <a href="./feed" type="button" class="btn btn-lg btn-default">Feed</a>
+   <a href="./play" type="button" class="btn btn-lg btn-default">Play</a>
+   <a href="./work" type="button" class="btn btn-lg btn-default">Work</a>
+   <a href="./sleep" type="button" class="btn btn-lg btn-default">Sleep</a>
 </div>
+
+<pre> @ViewBag.petJson </pre>
+
+    if(alert != null)
+    {
+       <script type="text/javascript">alert("@alert");</script>
+    } 
+
+     
+
 }
+
+
+
