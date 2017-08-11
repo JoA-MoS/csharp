@@ -12,6 +12,9 @@ namespace TheWall.Models
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+        public List<Message> Messages { get; set; } = new List<Message>();
+        public List<Comment> Comments { get; set; } = new List<Comment>();
+
 
     }
 }
