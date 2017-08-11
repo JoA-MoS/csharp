@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Quotes";
+}
+
+<h1>Here are the awesome quotes</h1>
+
+@foreach(var quote in ViewBag.quotes)
+{
+    <blockquote>
+        <h3>@quote.Quote</h3>
+        <p>@quote.Name at @quote.Created.ToString("h:mm tt MMMM d, yyyy") </p>
+
+    </blockquote>
+}
+

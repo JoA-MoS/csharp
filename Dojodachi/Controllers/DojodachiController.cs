@@ -15,7 +15,7 @@ namespace Dojodachi.Controllers
     public class DojodachiController : Controller
     {
 
-        DojodachiPet pet = new DojodachiPet();
+        DojodachiPet pet;
 
 
         private DojodachiPet GetDojodachiPetFromSession()
