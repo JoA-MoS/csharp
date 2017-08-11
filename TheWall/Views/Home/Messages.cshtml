@@ -1,0 +1,9 @@
+@model List<Message>
+
+
+<ul>
+@foreach(var message in @Model){
+   
+    <blockquote>@message.MessageText</blockquote>
+}
+</ul>

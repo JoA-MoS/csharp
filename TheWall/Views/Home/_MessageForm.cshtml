@@ -1,0 +1,28 @@
+
+@model MessageViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "The Wall";
+}
+
+<h2>@ViewData["Title"]</h2>
+@if (SignInManager.IsSignedIn(User))
+{
+<form asp-controller="Home" asp-action="PostMessage" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="MessageText" class="control-label"></label>
+        <textarea name="MessageText" id="MessageText" class="form-control" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary">Post a Message</button>
+        </div>
+    </div>
+</form>
+}
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

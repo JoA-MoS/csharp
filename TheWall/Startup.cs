@@ -48,6 +48,12 @@ namespace TheWall
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+
+            // services.AddDbContext<TheWallDbContext>(options =>
+            //     options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+
+
+
             services.AddScoped<Microsoft.AspNetCore.Identity.IUserClaimsPrincipalFactory<ApplicationUser>, AppClaimsPrincipalFactory>();
 
 

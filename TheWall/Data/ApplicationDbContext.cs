@@ -51,6 +51,8 @@ namespace TheWall.Data
                 .HasForeignKey(m => m.UserId)
                 .HasConstraintName("ForeignKey_Message_User");
 
+
+
         }
     }
 }
