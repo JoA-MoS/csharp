@@ -8,13 +8,13 @@ using TheWall.Data;
 namespace TheWall.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170811043742_InitialCreate")]
+    [Migration("20170811061856_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.1.1");
+                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
                 {
