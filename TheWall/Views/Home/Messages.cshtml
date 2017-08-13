@@ -1,9 +1,9 @@
 @model List<Message>
 
 
-<ul>
+
 @foreach(var message in @Model){
-   
+    <h3>@message.User.FirstName @message.User.LastName - @message.Created.ToString("MMMM d, yyyy")</h3>
     <blockquote>@message.MessageText</blockquote>
 }
-</ul>
+

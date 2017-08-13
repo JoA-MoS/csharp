@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TheWall.Data;
 using TheWall.Models;
 using TheWall.Models.TheWallViewModels;
-using TheWall.Data;
 
 namespace TheWall.Controllers
 {
@@ -28,20 +30,24 @@ namespace TheWall.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.messages = _context.Messages.Include(m => m.User)
+                .Include(m => m.Comments).ToList();
             return View();
         }
+        [Authorize]
         public IActionResult Messages()
         {
-            // ViewBag.Messages = _context.Messages;
-            foreach (Message message in _context.Messages)
-            {
-                System.Console.WriteLine(message.User.FirstName);
-            }
+            var msgs = _context.Messages.Include(m => m.User).ToList();
+            // foreach (Message message in msgs)
+            // {
+            //     System.Console.WriteLine(message.User.FirstName);
+            // }
             // System.Console.WriteLine(_context.Messages);
-            return View(_context.Messages.ToList());
+            return View(msgs);
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult PostMessage([FromForm] MessageViewModel model)
         {
             if (ModelState.IsValid)
@@ -56,15 +62,32 @@ namespace TheWall.Controllers
                 _context.Messages.Add(message);
                 _context.SaveChanges();
 
+            }
+            return RedirectToAction("Index");
 
+        }
+
+        [HttpPost]
+        [Route("{messageId}/comments")]
+        public IActionResult PostComment([FromForm] CommentViewModel model, int messageId)
+        {
+            if (ModelState.IsValid)
+            {
+                var userId = _userManager.GetUserId(User);
+                Comment comment = new Comment
+                {
+                    CommentText = model.CommentText,
+                    UserId = userId,
+                    MessageId = messageId
+                };
+
+                _context.Comments.Add(comment);
+                _context.SaveChanges();
 
             }
             return RedirectToAction("Index");
 
-
         }
-
-
 
         public IActionResult Error()
         {

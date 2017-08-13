@@ -2,9 +2,15 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    List<Message> messages = ViewBag.messages;
 }
 
 @Html.Partial("_MessageForm")
+
+@foreach(var message in messages){
+    @Html.Partial("_MessageDisplay", message);
+}
+
 
 
 

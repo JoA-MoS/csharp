@@ -8,8 +8,8 @@ using TheWall.Data;
 namespace TheWall.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170811211353_ForeignKeyTest")]
-    partial class ForeignKeyTest
+    [Migration("20170811230429_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -265,21 +265,18 @@ namespace TheWall.Migrations
                     b.HasOne("TheWall.Models.Message", "Message")
                         .WithMany("Comments")
                         .HasForeignKey("MessageId")
-                        .HasConstraintName("ForeignKey_Comment_Message")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("TheWall.Models.ApplicationUser", "User")
                         .WithMany("Comments")
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("ForeignKey_Comment_User");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("TheWall.Models.Message", b =>
                 {
                     b.HasOne("TheWall.Models.ApplicationUser", "User")
                         .WithMany("Messages")
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("ForeignKey_Message_User");
+                        .HasForeignKey("UserId");
                 });
         }
     }

@@ -1,5 +1,17 @@
-@model TheWall.Models.Message
+@model Message
+@{
+    CommentViewModel cvm = new CommentViewModel {
+        MessageId = @Model.MessageId
+    };
+}
 
+<h3>@Model.User.FirstName @Model.User.LastName - @Model.Created.ToString("MMMM d, yyyy")</h3>
+<blockquote>@Model.MessageText
+    @foreach(Comment comment in @Model.Comments){
+        @Html.Partial("_CommentDisplay", comment)
+    }
+    @Html.Partial("_CommentForm", cvm)
 
-<h3>@Model.Message.User.FirstName</h3>
+</blockquote>
+
 

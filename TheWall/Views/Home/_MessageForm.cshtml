@@ -3,11 +3,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-@{
-    ViewData["Title"] = "The Wall";
-}
 
-<h2>@ViewData["Title"]</h2>
 @if (SignInManager.IsSignedIn(User))
 {
 <form asp-controller="Home" asp-action="PostMessage" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">

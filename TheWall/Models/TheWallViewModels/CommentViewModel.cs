@@ -9,7 +9,8 @@ namespace TheWall.Models.TheWallViewModels
     public class CommentViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "You must enter a comment", MinimumLength = 1)]
+        public int MessageId { get; set; }
+        [Required]
         [Display(Name = "Post a comment")]
         public string CommentText { get; set; }
 

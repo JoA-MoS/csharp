@@ -33,23 +33,23 @@ namespace TheWall.Data
             // builder.Entity<ApplicationUser>().Property(i => i.NormalizedEmail).HasColumnType("varchar(256)");
             // builder.Entity<ApplicationUser>().Property(i => i.NormalizedUserName).HasColumnType("varchar(256)");
 
-            builder.Entity<Comment>()
-                .HasOne(c => c.Message)
-                .WithMany(m => m.Comments)
-                .HasForeignKey(c => c.MessageId)
-                .HasConstraintName("ForeignKey_Comment_Message");
+            // builder.Entity<Comment>()
+            //     .HasOne(c => c.Message)
+            //     .WithMany(m => m.Comments)
+            //     .HasForeignKey(c => c.MessageId)
+            //     .HasConstraintName("ForeignKey_Comment_Message");
 
-            builder.Entity<Comment>()
-                .HasOne(c => c.User)
-                .WithMany(u => u.Comments)
-                .HasForeignKey(c => c.UserId)
-                .HasConstraintName("ForeignKey_Comment_User");
+            // builder.Entity<Comment>()
+            //     .HasOne(c => c.User)
+            //     .WithMany(u => u.Comments)
+            //     .HasForeignKey(c => c.UserId)
+            //     .HasConstraintName("ForeignKey_Comment_User");
 
-            builder.Entity<Message>()
-                .HasOne(m => m.User)
-                .WithMany(u => u.Messages)
-                .HasForeignKey(m => m.UserId)
-                .HasConstraintName("ForeignKey_Message_User");
+            // builder.Entity<Message>()
+            //     .HasOne(m => m.User)
+            //     .WithMany(u => u.Messages)
+            //     .HasForeignKey(m => m.UserId)
+            //     .HasConstraintName("ForeignKey_Message_User");
 
 
 
