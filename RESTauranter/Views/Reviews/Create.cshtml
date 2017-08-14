@@ -1,11 +1,16 @@
-@model ReviewViewModel
+@model RESTauranter.Models.ReviewViewModels.ReviewViewModel
+@{
+    ViewData["Title"] = "New Review";
+}
 
+<h2>@ViewData["Title"].</h2>
+<hr />
 <form asp-controller="Reviews" asp-action="Create" method="post"> 
-    <div asp-validation-summary="All" class="text-danger"></div>
+    <!-- <div asp-validation-summary="All" class="text-danger"></div> -->
 
     <div class="form-group">
         <label asp-for="RestaurantId" class="control-label"></label>
-        <select name="RestaurantId" id="RestaurantId" class="form-control">
+        <select asp-for="RestaurantId" class="form-control">
             <option value="">Select a Restaurant</option>
             @foreach(Restaurant r in @ViewBag.restaurants){
                 <option value="@r.RestaurantId">@r.Name</option>
@@ -16,17 +21,17 @@
     </div>
      <div class="form-group">
         <label asp-for="Rating" class="control-label"></label>
-        <input type="number" name="Rating" id="Rating" class="form-control" value="" min="0" max="5" step="1" >
+        <input asp-for="Rating" class="form-control" >
         <span asp-validation-for="Rating" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="ReviewText" class="control-label"></label>
-        <textarea name="ReviewText" id="ReviewText" class="form-control" rows="3"></textarea>
+        <textarea asp-for="ReviewText" class="form-control" rows="3"></textarea>
         <span asp-validation-for="ReviewText" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="VisitDate" class="control-label"></label>
-        <input type="date" name="VisitDate" id="VisitDate" class="form-control">
+        <input type="date" asp-for="VisitDate" class="form-control">
         <span asp-validation-for="VisitDate" class="text-danger"></span>
     </div> 
 

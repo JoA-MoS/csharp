@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RESTauranter.Controllers {
     [Authorize]
-    [Route("reviews")]
+
     public class ReviewsController : Controller {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -29,7 +29,6 @@ namespace RESTauranter.Controllers {
         }
 
         [HttpGet]
-        [Route("")]
         public IActionResult AllReviews() {
             List<Review> reviews = _context.Reviews
                                             .Include(r => r.Restaurant)
@@ -40,17 +39,16 @@ namespace RESTauranter.Controllers {
         }
 
         [HttpGet]
-        [Route("create")]
         // [RestoreModelStateFromTempData]
         public IActionResult Create() {
-            ReviewViewModel model = new ReviewViewModel();
+
             ViewBag.restaurants = _context.Restaurants.ToList();
             // TempData["Review"] = model;
-            return View();
+            return View("Create");
         }
 
         [HttpPost]
-        [Route("create")]
+        [ValidateAntiForgeryToken]
         // [SetTempDataModelState]
         public IActionResult Create(ReviewViewModel model) {
 
@@ -69,9 +67,11 @@ namespace RESTauranter.Controllers {
                 System.Console.WriteLine("++++++++++++++++++++VALID+++++++++++++++++++");
                 return RedirectToAction("AllReviews");
             }
-            System.Console.WriteLine("--------------------NOT VALID--------------------");
-            ViewBag.restaurants = _context.Restaurants.ToList();
-            return View();
+            else {
+                System.Console.WriteLine("--------------------NOT VALID--------------------");
+                ViewBag.restaurants = _context.Restaurants.ToList();
+                return View(model);
+            }
         }
     }
 }

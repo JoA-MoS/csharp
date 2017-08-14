@@ -1,5 +1,10 @@
 @model List<Review>
+@{
+    ViewData["Title"] = "All Reviews";
+}
 
+<h2>@ViewData["Title"].</h2>
+<hr />
 @foreach(Review review in @Model){
     <h3>
         Review for: @review.Restaurant.Name  @string.Concat(Enumerable.Repeat("★", review.Rating))

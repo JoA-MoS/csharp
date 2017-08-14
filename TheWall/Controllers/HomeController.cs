@@ -43,6 +43,7 @@ namespace TheWall.Controllers
             //     System.Console.WriteLine(message.User.FirstName);
             // }
             // System.Console.WriteLine(_context.Messages);
+
             return View(msgs);
         }
 
