@@ -1,0 +1,13 @@
+@model List<Review>
+
+@foreach(Review review in @Model){
+    <h3>
+        Review for: @review.Restaurant.Name  @string.Concat(Enumerable.Repeat("★", review.Rating))
+    </h3>
+    <h4>Reviewer: @review.CreatedBy.FullName, @review.Created.ToString("MMM d, yyyy")</h4>
+    <blockquote>
+        <p>@review.ReviewText</p>
+    </blockquote>
+    <hr/>
+
+}
