@@ -32,30 +32,31 @@ namespace RESTauranter.Controllers {
         [Route("")]
         public IActionResult AllReviews() {
             List<Review> reviews = _context.Reviews
-                                                .Include(r => r.Restaurant)
-                                                .Include(r => r.CreatedBy)
-                                                .OrderByDescending(r => r.Created)
-                                                .ToList();
+                                            .Include(r => r.Restaurant)
+                                            .Include(r => r.CreatedBy)
+                                            .OrderByDescending(r => r.Created)
+                                            .ToList();
             return View(reviews);
         }
 
         [HttpGet]
-        [Route("new")]
-        [RestoreModelStateFromTempData]
-        public IActionResult New() {
-            ReviewViewModel review = new ReviewViewModel();
+        [Route("create")]
+        // [RestoreModelStateFromTempData]
+        public IActionResult Create() {
+            ReviewViewModel model = new ReviewViewModel();
             ViewBag.restaurants = _context.Restaurants.ToList();
             // TempData["Review"] = model;
-            return View(review);
+            return View();
         }
 
         [HttpPost]
-        [Route("")]
-        [SetTempDataModelState]
+        [Route("create")]
+        // [SetTempDataModelState]
         public IActionResult Create(ReviewViewModel model) {
 
 
             if (ModelState.IsValid) {
+                // _userManager.GetUserName(User);
                 var userId = _userManager.GetUserId(User);
                 Review review = new Review {
                     RestaurantId = model.RestaurantId,
@@ -69,7 +70,8 @@ namespace RESTauranter.Controllers {
                 return RedirectToAction("AllReviews");
             }
             System.Console.WriteLine("--------------------NOT VALID--------------------");
-            return RedirectToAction("New", model);
+            ViewBag.restaurants = _context.Restaurants.ToList();
+            return View();
         }
     }
 }

@@ -4,10 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RESTauranter.Models.AccountViewModels
-{
-    public class RegisterViewModel
-    {
+namespace RESTauranter.Models.AccountViewModels {
+    public class RegisterViewModel {
         [Required]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
@@ -28,7 +26,7 @@ namespace RESTauranter.Models.AccountViewModels
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
 
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
